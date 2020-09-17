@@ -1,0 +1,24 @@
+FROM quay.io/maksymbilenko/oracle-ee-12c-base:latest
+WORKDIR /
+ENV DBCA_TOTAL_MEMORY 4096
+
+ENV ORACLE_SID=EE
+ENV ORACLE_HOME=/u01/app/oracle/product/12.2.0/EE
+ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/u01/app/oracle/product/12.2.0/EE/bin
+ENV DISPLAY :0
+ENV MANUAL_DBCA false
+
+RUN yum install -y curl gettext java && yum clean all
+
+EXPOSE 1521
+EXPOSE 8080
+
+ADD testcontainer/entrypoint.sh /entrypoint.sh
+
+# Scripts
+ADD testcontainer/create_schemas.sql /create_schemas.sql
+RUN /entrypoint.sh dockerbuild
+
+
+ENTRYPOINT ["/entrypoint.sh"]
+CMD [""]
