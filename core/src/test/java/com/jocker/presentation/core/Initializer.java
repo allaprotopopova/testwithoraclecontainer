@@ -1,4 +1,4 @@
-package com.jocker.presentation.reports;
+package com.jocker.presentation.core;
 
 import org.springframework.boot.test.util.TestPropertyValues;
 import org.springframework.context.ApplicationContextInitializer;
