@@ -17,6 +17,8 @@ ADD testcontainer/entrypoint.sh /entrypoint.sh
 
 # Scripts
 ADD testcontainer/create_schemas.sql /create_schemas.sql
+ADD testcontainer/schema_personal.sql /schema_personal.sql
+ADD testcontainer/schema_reports.sql /schema_reports.sql
 RUN /entrypoint.sh dockerbuild
 
 
