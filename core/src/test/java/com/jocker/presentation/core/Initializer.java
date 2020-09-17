@@ -26,7 +26,7 @@ public class Initializer implements ApplicationContextInitializer<ConfigurableAp
         String jdbcUrl = "jdbc:oracle:thin:" + oracleContainer.getUsername() + "/" + oracleContainer.getPassword() + "@" + oracleContainer.getContainerIpAddress() + ":" + oracleContainer.getOraclePort() + ":EE";
         TestPropertyValues.of(
                 "spring.datasource.driver-class-name=" + oracleContainer.getDriverClassName(),
-                "spring.datasource.url=" + oracleContainer.getJdbcUrl()
+                "spring.datasource.url=" + jdbcUrl
         ).applyTo(applicationContext);
     }
 }
