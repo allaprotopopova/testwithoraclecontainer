@@ -1,14 +1,19 @@
 package com.jocker.presentation.personal.repository;
 
-import com.jocker.presentation.personal.AbstractTestcontainersTest;
+import com.jocker.presentation.core.AbstractTestcontainersTest;
+import com.jocker.presentation.personal.MyBatisConfiguration;
 import com.jocker.presentation.personal.model.dto.Employee;
-import com.jocker.presentation.personal.repository.EmployeeRepository;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.jdbc.Sql;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
+@ContextConfiguration(classes = MyBatisConfiguration.class)
+//@Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:schema.sql")
+@Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:data.sql")
 public class TestcontainersTest extends AbstractTestcontainersTest {
 
     @Autowired

@@ -5,6 +5,8 @@ spring:
     platform: oracle
     name: oracle
     driver-class-name:  oracle.jdbc.OracleDriver
+    username: PERSONAL
+    password: 1qaz@WSX
   jpa:
     database: ORACLE
     generate-ddl: true

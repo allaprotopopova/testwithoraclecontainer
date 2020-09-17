@@ -1,4 +1,4 @@
-package com.jocker.presentation.reports;
+package com.jocker.presentation.core;
 
 
 import org.junit.BeforeClass;
@@ -15,9 +15,7 @@ import static org.junit.Assume.assumeTrue;
 @RunWith(SpringRunner.class)
 @MybatisTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@ContextConfiguration(classes = MyBatisConfiguration.class, initializers = Initializer.class)
-//@Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:schema.sql")
-@Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:data.sql")
+@ContextConfiguration(initializers = Initializer.class)
 public abstract class AbstractTestcontainersTest {
 
     private static boolean enableTestContainer;
