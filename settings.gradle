@@ -1,0 +1,6 @@
+rootProject.name = 'presentation'
+
+include 'core'
+include 'personal'
+include 'reports'
+

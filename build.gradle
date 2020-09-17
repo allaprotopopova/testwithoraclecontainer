@@ -1,0 +1,82 @@
+buildscript {
+
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:2.2.8.RELEASE"
+    }
+}
+
+allprojects {
+    group 'com.jocker.presentation'
+
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'maven'
+    apply plugin: 'io.spring.dependency-management'
+
+    idea {
+        module {
+            downloadJavadoc = true
+            downloadSources = true
+        }
+    }
+
+
+    group = 'com.jocker.presentation'
+    version = '0.0.1-SNAPSHOT'
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+
+    build.dependsOn install
+
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+
+    ext {
+        set('testcontainersVersion', "1.14.3")
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.testcontainers:testcontainers-bom:1.14.3"
+        }
+    }
+}
+
+subprojects {
+    apply plugin: 'idea'
+
+    project.sourceCompatibility = JavaVersion.VERSION_1_8
+    project.targetCompatibility = JavaVersion.VERSION_1_8
+
+    compileJava.options.encoding = "UTF-8"
+    compileTestJava.options.encoding = "UTF-8"
+
+    sourceSets {
+        main {
+            java {
+                srcDirs "src/main/java"
+                srcDirs "src/generated/java"
+            }
+        }
+    }
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        mavenCentral()
+        jcenter()
+    }
+}
+test {
+    useJUnitPlatform()
+}

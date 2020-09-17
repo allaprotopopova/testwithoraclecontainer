@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--suppress ALL -->
+<mapper namespace="com.jocker.presentation.personal.repository.EmployeeRepository">
+    <resultMap id="EmployeeMap" type="com.jocker.presentation.personal.model.dto.Employee">
+        <result column="id" jdbcType="DECIMAL" property="id"/>
+        <result column="pid" jdbcType="VARCHAR" property="pid"/>
+        <result column="title" jdbcType="DECIMAL" property="title"/>
+    </resultMap>
+
+    <select id="findAllRecursively" resultMap="EmployeeMap">
+        SELECT id,
+               pid,
+               title
+        FROM employee
+        START WITH pid is null
+        CONNECT BY PRIOR id = pid
+    </select>
+
+    <select id="findAll" resultMap="EmployeeMap">
+        SELECT id,
+               pid,
+               title
+        FROM employee
+    </select>
+
+    <insert id="save" keyColumn="id" keyProperty="id"
+            parameterType="com.jocker.presentation.personal.model.dto.Employee" useGeneratedKeys="true">
+        insert into employee (id, pid, title)
+        values (#{id}, #{pid}, #{title})
+    </insert>
+</mapper>

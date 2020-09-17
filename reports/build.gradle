@@ -1,0 +1,40 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot'
+}
+
+jar {
+	manifest {
+		attributes(
+				'Main-Class': 'com.jocker.presentation.personal.PersonalApplication.java'
+		)
+	}
+}
+
+bootJar {
+	launchScript()
+	mainClassName = 'com.jocker.presentation.personal.PersonalApplication.java'
+}
+
+dependencies {
+	compile project(':core')
+
+	// Lombok
+	compileOnly("org.projectlombok:lombok")
+	annotationProcessor ("org.projectlombok:lombok")
+
+	// JPA
+	compile "com.oracle.ojdbc:ojdbc8:19.3.0.0"
+	compile 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.3'
+
+	testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.2.8.RELEASE'
+
+	testCompile("org.projectlombok:lombok")
+
+	testCompile group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter-test', version: '2.1.3'
+
+	implementation platform('org.testcontainers:testcontainers-bom:'+testcontainersVersion) //import bom
+	testImplementation 'org.testcontainers:junit-jupiter'
+	testImplementation('org.testcontainers:oracle-xe') //no version specified
+
+}
