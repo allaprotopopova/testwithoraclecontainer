@@ -51,8 +51,8 @@ echo | /u01/app/oracle/product/12.2.0/EE/root.sh > /dev/null 2>&1 || true
 
 		  echo CREATING SCHEMAS
       su -p oracle -c "$ORACLE_HOME/bin/sqlplus / as sysdba @/create_schemas.sql"
-      su -p oracle -c "$ORACLE_HOME/bin/sqlplus / as sysdba @/schema_personal.sql"
-      su -p oracle -c "$ORACLE_HOME/bin/sqlplus / as sysdba @/schema_reports.sql"
+      su -p oracle -c "$ORACLE_HOME/bin/sqlplus personal/passw0rd @/schema_personal.sql"
+      su -p oracle -c "$ORACLE_HOME/bin/sqlplus reports/passw0rd as sysdba @/schema_reports.sql"
 
 
 		fi

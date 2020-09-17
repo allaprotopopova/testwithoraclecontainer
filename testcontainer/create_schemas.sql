@@ -1,6 +1,6 @@
 alter database default tablespace users;
 
-create user PERSONAL identified by "1qaz@WSX";
+create user PERSONAL identified by "passw0rd";
 alter user PERSONAL quota unlimited on users;
 grant connect to PERSONAL;
 grant create table to PERSONAL;
@@ -11,7 +11,7 @@ grant create procedure to PERSONAL;
 grant create type to PERSONAL;
 grant create any context to PERSONAL;
 
-create user REPORTS identified by "1qaz@WSX";
+create user REPORTS identified by "passw0rd";
 alter user REPORTS quota unlimited on users;
 grant connect to REPORTS;
 grant create table to REPORTS;
