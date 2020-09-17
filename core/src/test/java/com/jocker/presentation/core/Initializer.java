@@ -23,7 +23,7 @@ public class Initializer implements ApplicationContextInitializer<ConfigurableAp
                 .waitingFor(Wait.forLogMessage("Database ready to use", 1));
         oracleContainer.start();
 
-        String jdbcUrl = "jdbc:oracle:thin:" + oracleContainer.getUsername() + "/" + oracleContainer.getPassword() + "@" + oracleContainer.getContainerIpAddress() + ":" + oracleContainer.getOraclePort() + ":ee";
+        String jdbcUrl = "jdbc:oracle:thin:" + oracleContainer.getUsername() + "/" + oracleContainer.getPassword() + "@" + oracleContainer.getContainerIpAddress() + ":" + oracleContainer.getOraclePort() + ":EE";
         TestPropertyValues.of(
                 "spring.datasource.driver-class-name=" + oracleContainer.getDriverClassName(),
                 "spring.datasource.url=" + oracleContainer.getJdbcUrl()
