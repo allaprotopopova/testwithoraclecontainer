@@ -8,15 +8,16 @@ ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/u01/app/o
 ENV DISPLAY :0
 ENV MANUAL_DBCA false
 
-RUN yum install -y curl gettext java && yum clean all
-
 EXPOSE 1521
 EXPOSE 8080
 
 ADD testcontainer/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 # Scripts
 ADD testcontainer/create_schemas.sql /create_schemas.sql
+ADD testcontainer/schema_personal.sql /schema_personal.sql
+ADD testcontainer/schema_reports.sql /schema_reports.sql
 RUN /entrypoint.sh dockerbuild
 
 
