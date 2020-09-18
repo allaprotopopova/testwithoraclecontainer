@@ -50,6 +50,7 @@ echo | /u01/app/oracle/product/12.2.0/EE/root.sh > /dev/null 2>&1 || true
       #su oracle -c 'echo SHOW PARAMETER INMEMORY\; | $ORACLE_HOME/bin/sqlplus -S / as sysdba'
 
 		  echo CREATING SCHEMAS
+		  echo test
       su -p oracle -c "$ORACLE_HOME/bin/sqlplus / as sysdba @/create_schemas.sql"
       su -p oracle -c "$ORACLE_HOME/bin/sqlplus personal/passw0rd @/schema_personal.sql"
       su -p oracle -c "$ORACLE_HOME/bin/sqlplus reports/passw0rd as sysdba @/schema_reports.sql"
