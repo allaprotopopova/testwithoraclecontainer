@@ -8,25 +8,20 @@ import org.springframework.test.context.TestPropertySource;
 import org.testcontainers.containers.OracleContainer;
 import org.testcontainers.containers.wait.strategy.Wait;
 
-@TestPropertySource(locations = "test.properties")
 public class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
 
-    private static final OracleContainer oracleContainer = new OracleContainer();
-
+    private static final OracleContainerCustom oracleContainer = new OracleContainerCustom();
 
     @Override
     public void initialize(ConfigurableApplicationContext applicationContext) {
         oracleContainer
-                .withStartupTimeoutSeconds(90)
-                .withConnectTimeoutSeconds(90)
                 .withReuse(true)
                 .waitingFor(Wait.forLogMessage("Database ready to use", 1));
         oracleContainer.start();
 
-        String jdbcUrl = "jdbc:oracle:thin:" + oracleContainer.getUsername() + "/" + oracleContainer.getPassword() + "@" + oracleContainer.getContainerIpAddress() + ":" + oracleContainer.getOraclePort() + ":EE";
         TestPropertyValues.of(
                 "spring.datasource.driver-class-name=" + oracleContainer.getDriverClassName(),
-                "spring.datasource.url=" + jdbcUrl
+                "spring.datasource.url=" + oracleContainer.getJdbcUrl()
         ).applyTo(applicationContext);
     }
 }

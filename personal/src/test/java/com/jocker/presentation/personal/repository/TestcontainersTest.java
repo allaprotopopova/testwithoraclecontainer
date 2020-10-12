@@ -12,7 +12,6 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 @ContextConfiguration(classes = MyBatisConfiguration.class)
-//@Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:schema.sql")
 @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:data.sql")
 public class TestcontainersTest extends AbstractTestcontainersTest {
 
